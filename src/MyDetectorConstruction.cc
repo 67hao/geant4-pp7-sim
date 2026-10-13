@@ -80,35 +80,55 @@ void MyDetectorConstruction::DefineMaterials() {
             kStateGas, 2.73 * kelvin, 3e-18 * pascal);
     }
 
-    // [1]. S1: Cement (CEM) — density 3.1 g/cm3
-    MakeMat("S1", 3.1 * g / cm3, {
-        {"O",  0.3411}, {"Ca", 0.4545}, {"Si", 0.0912}, {"Fe", 0.0259},
-        {"Al", 0.0233}, {"S",  0.0108}, {"Mg", 0.0084}, {"K",  0.0048},
-        {"Na", 0.0042}
-    });
+    // [1]. S1
+    if (!G4Material::GetMaterial("S1", false)) {
+        G4Material* S1 = new G4Material("S1", 4.099 * g / cm3, 6);
+        S1->AddElement(NIST->FindOrBuildElement("B"), 0.1151);
+        S1->AddElement(NIST->FindOrBuildElement("Ba"), 0.2396);
+        S1->AddElement(NIST->FindOrBuildElement("Ca"), 0.0331);
+        S1->AddElement(NIST->FindOrBuildElement("Pb"), 0.2473);
+        S1->AddElement(NIST->FindOrBuildElement("La"), 0.0255);
+        S1->AddElement(NIST->FindOrBuildElement("O"), 0.3393);
+    }
 
-    // [2]. S2: Green Glass — density 2.5 g/cm3
-    MakeMat("S2", 2.5 * g / cm3, {
-        {"O",  0.4274}, {"Si", 0.3235}, {"Na", 0.0979}, {"Zn", 0.0145},
-        {"Al", 0.0132}, {"Mg", 0.0084}, {"Fe", 0.0035}, {"S",  0.0016}
-    });
+    // [2]. S2
+    if (!G4Material::GetMaterial("S2", false)) {
+        G4Material* S2 = new G4Material("S2", 4.396 * g / cm3, 6);
+        S2->AddElement(NIST->FindOrBuildElement("B"), 0.0989);
+        S2->AddElement(NIST->FindOrBuildElement("Ba"), 0.2231);
+        S2->AddElement(NIST->FindOrBuildElement("Ca"), 0.0308);
+        S2->AddElement(NIST->FindOrBuildElement("Pb"), 0.3011);
+        S2->AddElement(NIST->FindOrBuildElement("La"), 0.0356);
+        S2->AddElement(NIST->FindOrBuildElement("O"), 0.3105);
+    }
 
-    // [3]. S3: Brown Glass — density 2.52 g/cm3
-    MakeMat("S3", 2.52 * g / cm3, {
-        {"O",  0.4312}, {"Si", 0.3193}, {"Na", 0.0964}, {"Al", 0.0201},
-        {"Zn", 0.0185}, {"Mg", 0.0103}, {"Fe", 0.0042}, {"S",  0.0020}
-    });
+    // [3]. S3
+    if (!G4Material::GetMaterial("S3", false)) {
+        G4Material* S3 = new G4Material("S3", 4.693 * g / cm3, 6);
+        S3->AddElement(NIST->FindOrBuildElement("B"), 0.0847);
+        S3->AddElement(NIST->FindOrBuildElement("Ba"), 0.2087);
+        S3->AddElement(NIST->FindOrBuildElement("Ca"), 0.0289);
+        S3->AddElement(NIST->FindOrBuildElement("Pb"), 0.3480);
+        S3->AddElement(NIST->FindOrBuildElement("La"), 0.0444);
+        S3->AddElement(NIST->FindOrBuildElement("O"), 0.2854);
+    }
 
-    // [4]. S4: Transparent Glass — density 2.51 g/cm3
-    MakeMat("S4", 2.51 * g / cm3, {
-        {"O",  0.4236}, {"Si", 0.3216}, {"Na", 0.0972}, {"Zn", 0.0161},
-        {"Al", 0.0138}, {"Mg", 0.0036}, {"Fe", 0.0028}, {"S",  0.0024}
-    });
+    // [4]. S4
+    if (!G4Material::GetMaterial("S4", false)) {
+        G4Material* S4 = new G4Material("S4", 4.990 * g / cm3, 6);
+        S4->AddElement(NIST->FindOrBuildElement("B"), 0.0723);
+        S4->AddElement(NIST->FindOrBuildElement("Ba"), 0.1960);
+        S4->AddElement(NIST->FindOrBuildElement("Ca"), 0.0271);
+        S4->AddElement(NIST->FindOrBuildElement("Pb"), 0.3892);
+        S4->AddElement(NIST->FindOrBuildElement("La"), 0.0522);
+        S4->AddElement(NIST->FindOrBuildElement("O"), 0.2632);
+    }
 
-    // [5]. S7: Pure Lead (Pb) — density 11.34 g/cm3
-    MakeMat("S7", 11.34 * g / cm3, {
-        {"Pb", 1.0}
-    });
+    // [5]. S7: pure Pb
+    if (!G4Material::GetMaterial("S7", false)) {
+        G4Material* S7 = new G4Material("S7", 11.34 * g / cm3, 1);
+        S7->AddElement(NIST->FindOrBuildElement("Pb"), 1.0);
+    }
 }
 
 // =========================================================================
